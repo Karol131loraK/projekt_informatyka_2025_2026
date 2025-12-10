@@ -1,3 +1,6 @@
-Tytuł: Projekt_Informatyka_2025_2026
+Tytuł: Projekt\_Informatyka\_2025\_2026
 Autor: Karol Karski
-Zakres: 
+Projekt 1: Arkanoid - Projekt C++ / SFML
+
+
+
