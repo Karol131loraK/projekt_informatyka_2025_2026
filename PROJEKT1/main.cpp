@@ -113,7 +113,6 @@ int main() {
                 //  F5 - Zapis 
                 if (event.key.code == sf::Keyboard::F5 && (currentState == AppState::Playing || currentState == AppState::Paused)) {
 
-                    // WA¯NE: Przekazujemy game.getScore() jako czwarty argument!
                     snapshot.capture(game.getPaddle(), game.getBall(), game.getBlocks(), game.getScore());
 
                     if (snapshot.saveToFile("zapis.txt"))
