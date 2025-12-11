@@ -58,7 +58,7 @@ int main() {
                 if (currentState == AppState::Menu) {
                     menu.handleEvent(event); 
 
-                    // ENTER - Wybór opcji
+                    //Wybór opcji
                     if (event.key.code == sf::Keyboard::Enter) {
                         switch (menu.getSelectedItem()) {
                         case 0: // Nowa gra
@@ -68,12 +68,8 @@ int main() {
 
                         case 1: // Wczytaj grê
                             if (snapshot.loadFromFile("zapis.txt")) {
-                                // Przywracamy pozycje
                                 snapshot.apply(game.getPaddle(), game.getBall(), game.getBlocks());
-
-                                // WA¯NE: Przywracamy wynik
                                 game.setScore(snapshot.getSavedScore());
-
                                 currentState = AppState::Playing;
                                 std::cout << "Gra wczytana! Wynik: " << game.getScore() << "\n";
                             }
@@ -100,9 +96,9 @@ int main() {
                     }
                 }
 
-                // --- LOGIKA GRY (PAUZA I ZAPIS) ---
 
-                // Klawisz P - Pauza
+
+                //  P - Pauza
                 if (event.key.code == sf::Keyboard::P) {
                     if (currentState == AppState::Playing) {
                         currentState = AppState::Paused;
@@ -114,8 +110,7 @@ int main() {
                     }
                 }
 
-                // Klawisz F5 - Zapis (dzia³a tylko podczas gry lub pauzy)
-                // Klawisz F5 - Zapis
+                //  F5 - Zapis 
                 if (event.key.code == sf::Keyboard::F5 && (currentState == AppState::Playing || currentState == AppState::Paused)) {
 
                     // WA¯NE: Przekazujemy game.getScore() jako czwarty argument!
@@ -128,14 +123,11 @@ int main() {
                 }
             }
         }
-        // --- KONIEC PÊTLI ZDARZEÑ ---
 
 
-        // Logika gry (ci¹g³a)
         if (currentState == AppState::Playing)
             game.update(dt);
 
-        // Sprawdzenie przegranej
         if (currentState == AppState::Playing && game.isLost()) {
             int playerScore = game.getScore();
             saveBestScore(playerScore);
@@ -144,7 +136,7 @@ int main() {
             std::cout << "Przegrana! Powrot do menu.\n";
         }
 
-
+        // Wszystkie bloki zniszczone
         if (currentState == AppState::Playing && game.isWon()) {
             int playerScore = game.getScore();
 
